@@ -1,5 +1,5 @@
 <template>
-    <button class="tfs-button">
+    <button class="tfs-button" :disabled="disabled">
         <slot></slot>
     </button>
 </template>
@@ -19,6 +19,10 @@ export default {
         colorActive: {
             type: String,
             default: '#3cc1e2'
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     }
 }
@@ -26,6 +30,7 @@ export default {
 
 <style>
 .tfs-button {
+    min-width: 10rem;
     background-color: v-bind(color);
     border: none;
     color: white;
@@ -46,5 +51,10 @@ export default {
 
 .tfs-button:active {
     background-color: v-bind(colorActive);
+}
+
+.tfs-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 </style>

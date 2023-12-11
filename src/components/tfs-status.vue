@@ -14,6 +14,19 @@ export default {
             type: Number,
             default: 0
         }
+    },
+    data() {
+        return {
+            metersFontSize: '50px'
+        }
+    },
+    watch: {
+        meterNum: function (val) {
+            this.metersFontSize = '80px';
+            setTimeout(() => {
+                this.metersFontSize = '50px';
+            }, 100);
+        }
     }
 }
 </script>
@@ -33,10 +46,11 @@ export default {
 .meter-num {
     font-family: Josefin Sans;
     font-weight: 800;
-    font-size: 50px;
+    font-size: v-bind(metersFontSize);
     margin: 0 10px;
     background-image: -webkit-linear-gradient(right,#96c93d, rgb(0, 176, 155));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: 0.5s;
 }
 </style>

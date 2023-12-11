@@ -4,9 +4,10 @@
     <TfsPic></TfsPic>
   </div>
   <div class="tfs-button-container">
-    <TfsButton @click="handleWater"><font-awesome-icon :icon="['fas', 'droplet']" /> Water</TfsButton>
-    <TfsButton @click="handleFertilize" color="#8b4a00" colorHover="#b35f00" colorActive="#8b4a00"><font-awesome-icon
-        :icon="['fas', 'poop']" /> Fertilize</TfsButton>
+    <TfsButton @click="handleWater" v-model:disabled="buttonDisabled"><font-awesome-icon :icon="waterIcon"
+        :spin="iconSpin" /> Water</TfsButton>
+    <TfsButton @click="handleFertilize" color="#8b4a00" colorHover="#b35f00" colorActive="#8b4a00"
+      v-model:disabled="buttonDisabled"><font-awesome-icon :icon="fertilizeIcon" :spin="iconSpin" /> Fertilize</TfsButton>
   </div>
 </template>
 
@@ -24,7 +25,11 @@ export default {
   },
   data() {
     return {
-      meters: 0
+      meters: 0,
+      buttonDisabled: false,
+      waterIcon: ['fas', 'droplet'],
+      fertilizeIcon: ['fas', 'poop'],
+      iconSpin: false
     }
   },
   methods: {
@@ -34,10 +39,24 @@ export default {
         alert('别浇了别浇了快顶破天了！');
         return;
       }
-      this.meters += 1;
+      this.meters += 0.1;
+      this.meters = parseFloat(this.meters.toFixed(1));
+      this.disableButton();
     },
     handleFertilize() {
       console.log('施肥');
+    },
+    disableButton() {
+      this.buttonDisabled = true;
+      this.waterIcon = ['fas', 'circle-notch']
+      this.fertilizeIcon = ['fas', 'circle-notch']
+      this.iconSpin = true;
+      setTimeout(() => {
+        this.buttonDisabled = false;
+        this.waterIcon = ['fas', 'droplet']
+        this.fertilizeIcon = ['fas', 'poop']
+        this.iconSpin = false;
+      }, 5000);
     }
   }
 }
