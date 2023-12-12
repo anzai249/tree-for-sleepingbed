@@ -6,8 +6,8 @@
   <div class="tfs-button-container">
     <TfsButton @click="handleWater" v-model:disabled="buttonDisabled"><font-awesome-icon :icon="waterIcon"
         :spin="iconSpin" /> Water</TfsButton>
-    <TfsButton @click="handleFertilize" color="#8b4a00" colorHover="#b35f00" colorActive="#8b4a00"
-      v-model:disabled="buttonDisabled"><font-awesome-icon :icon="fertilizeIcon" :spin="iconSpin" /> Fertilize</TfsButton>
+    <TfsButton @click="handleFertilize" color="#8b4a00" colorHover="#b35f00" colorActive="#8b4a00" :disabled="true">
+      <font-awesome-icon :icon="fertilizeIcon" :spin="false" /> Fertilize</TfsButton>
   </div>
 </template>
 
@@ -49,12 +49,12 @@ export default {
     disableButton() {
       this.buttonDisabled = true;
       this.waterIcon = ['fas', 'circle-notch']
-      this.fertilizeIcon = ['fas', 'circle-notch']
+      // this.fertilizeIcon = ['fas', 'circle-notch']
       this.iconSpin = true;
       setTimeout(() => {
         this.buttonDisabled = false;
         this.waterIcon = ['fas', 'droplet']
-        this.fertilizeIcon = ['fas', 'poop']
+        // this.fertilizeIcon = ['fas', 'poop']
         this.iconSpin = false;
       }, 5000);
     }
