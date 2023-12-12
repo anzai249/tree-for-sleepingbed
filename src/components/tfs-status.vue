@@ -4,6 +4,10 @@
         <p class="meter-num">{{ meterNum }}</p>
         <p class="tfs-status-text">米高了！</p>
     </div>
+    <div class="tfs-status">
+        <p class="tfs-status-text">生长速度</p>
+        <p class="meter-num">{{ growSpeed }}</p>
+    </div>
 </template>
 
 <script>
@@ -11,6 +15,10 @@ export default {
     name: 'tfs-status',
     props: {
         meterNum: {
+            type: Number,
+            default: 0
+        },
+        growSpeed: {
             type: Number,
             default: 0
         }
